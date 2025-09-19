@@ -17,5 +17,5 @@ while ! docker info; do
 done
 
 # Pull and run the Docker image
-docker pull ${docker_image}
+docker pull ${docker_image}     # docker image passed from user_data script
 docker run -d -p 80:3000 ${docker_image}

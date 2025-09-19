@@ -22,7 +22,7 @@ variable "key_pair_name" {
   default     = "dream-key"
 }
 
-variable "docker_hub_username" {
+variable "dockerhub_username" {
   description = "Your Docker Hub username."
   type        = string
   default     = "wiskky"
@@ -37,5 +37,5 @@ variable "docker_image_name" {
 variable "docker_image_tag" {
   description = "The tag for the Docker image."
   type        = string
-  default     = "latest"
+  default     = "1"
 }
