@@ -20,19 +20,18 @@ done
 docker pull ${docker_image}     # docker image passed from user_data script
 
 # Create a host directory that will be mounted into the container
+# Create a host directory that will be mounted into the container
 HOST_APP_DIR="/home/ubuntu/app"
-mkdir -p ${HOST_APP_DIR}
-chown -R ubuntu:ubuntu ${HOST_APP_DIR} || true
+mkdir -p $${HOST_APP_DIR}
+chown -R ubuntu:ubuntu $${HOST_APP_DIR} || true
 
-# If the host app directory is empty, extract the image contents into it so the
-# container will have the app files on the host. We create a temporary container
-# from the image, copy out /usr/src/app (the WORKDIR in the Dockerfile), then remove it.
-if [ -z "$(ls -A ${HOST_APP_DIR})" ]; then
-  echo "Host app dir is empty; extracting app files from image into ${HOST_APP_DIR}"
+# If the host app directory is empty, extract the image contents into it
+if [ -z "$(ls -A $${HOST_APP_DIR})" ]; then
+  echo "Host app dir is empty; extracting app files from image into $${HOST_APP_DIR}"
   tmp_container=$(docker create ${docker_image})
-  docker cp ${tmp_container}:/usr/src/app/. ${HOST_APP_DIR}/ || true
-  docker rm ${tmp_container} || true
-  chown -R ubuntu:ubuntu ${HOST_APP_DIR} || true
+  docker cp $${tmp_container}:/usr/src/app/. $${HOST_APP_DIR}/ || true
+  docker rm $${tmp_container} || true
+  chown -R ubuntu:ubuntu $${HOST_APP_DIR} || true
 fi
 
 # Run the container mounting the host directory to the container WORKDIR
