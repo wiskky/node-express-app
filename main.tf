@@ -39,6 +39,7 @@ resource "aws_instance" "node_app_instance" {
   user_data = templatefile("user_data.sh", {
     docker_image = "${var.dockerhub_username}/${var.docker_image_name}:${var.docker_image_tag}"
     CONTAINER_NAME = "node_app_container"
+    HOST_APP_DIR = "/home/ubuntu/app"
   })
 
   tags = {
