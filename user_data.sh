@@ -17,7 +17,7 @@ while ! docker info; do
 done
 
 # Pull the Docker image
-docker pull ${docker_image}
+docker pull ${docker_image}  # Passed from Terraform in data use block
 
 # Create a host directory for the app
 HOST_APP_DIR="/home/ubuntu/app"
