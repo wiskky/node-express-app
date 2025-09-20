@@ -20,7 +20,7 @@ done
 docker pull ${docker_image}
 
 # Create a host directory for the app
-HOST_APP_DIR="${HOST_APP_DIR}"
+HOST_APP_DIR="/home/ubuntu/app"
 mkdir -p ${HOST_APP_DIR}
 chown -R ubuntu:ubuntu ${HOST_APP_DIR} || true
 
@@ -28,8 +28,8 @@ chown -R ubuntu:ubuntu ${HOST_APP_DIR} || true
 if [ -z "$(ls -A ${HOST_APP_DIR})" ]; then
   echo "Host app dir is empty; extracting app files from image into ${HOST_APP_DIR}"
   tmp_container=$(docker create ${docker_image})
-  docker cp $${tmp_container}:/usr/src/app/. ${HOST_APP_DIR}/ || true
-  docker rm $${tmp_container} || true
+  docker cp $tmp_container:/usr/src/app/. ${HOST_APP_DIR}/ || true
+  docker rm $tmp_container || true
   chown -R ubuntu:ubuntu ${HOST_APP_DIR} || true
 fi
 
