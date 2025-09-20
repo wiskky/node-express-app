@@ -1,9 +1,9 @@
 name: Build and Deploy
 
 on:
-  push:
-    branches:
-      - node-app
+  #push:
+    #branches:
+      #- node-app
   workflow_dispatch:
 
 env:
