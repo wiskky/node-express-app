@@ -2,6 +2,7 @@ provider "aws" {
   region = var.region
 }
 
+# Security group for SSH and HTTP
 resource "aws_security_group" "app_security_group" {
   name_prefix = "node-app-sg"
 
@@ -27,23 +28,24 @@ resource "aws_security_group" "app_security_group" {
   }
 }
 
+# EC2 Instance
 resource "aws_instance" "node_app_instance" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.key_pair_name
   vpc_security_group_ids = [aws_security_group.app_security_group.id]
 
-  # Pass the Docker image tag variable to the user data script
+  # Pass the image name and tag to user_data
   user_data = templatefile("user_data.sh", {
     docker_image = "${var.dockerhub_username}/${var.docker_image_name}:${var.docker_image_tag}"
-    HOST_APP_DIR = "/home/ubuntu/app"
   })
 
   tags = {
-    Name        = "node-app-server"
+    Name = "node-app-server"
   }
 }
 
+# Public IP Output
 output "public_ip" {
   value = aws_instance.node_app_instance.public_ip
 }

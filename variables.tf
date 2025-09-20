@@ -1,41 +1,40 @@
-variable "region" {
-  description = "The AWS region to deploy resources in."
-  type        = string
-  default     = "eu-north-1"
-}
-
-variable "instance_type" {
-  description = "The EC2 instance type."
-  type        = string
-  default     = "t3.micro"
-}
-
-variable "ami_id" {
-  description = "The AMI ID for the EC2 instance (Ubuntu)."
-  type        = string
-  default     = "ami-0a716d3f3b16d290c"
-}
-
-variable "key_pair_name" {
-  description = "The name of your EC2 key pair."
-  type        = string
-  default     = "dream-key"
-}
-
 variable "dockerhub_username" {
-  description = "Your Docker Hub username."
-  type        = string
-  default     = "wiskky"
+  type = string
 }
 
 variable "docker_image_name" {
-  description = "The name of the Docker image."
-  type        = string
-  default     = "node-express-app"
+  type = string
 }
 
 variable "docker_image_tag" {
-  description = "The tag for the Docker image."
-  type        = string
-  default     = "v2"
+  type = string
 }
+# AWS settings
+variable "region" {
+  type        = string
+  description = "AWS region to deploy resources"
+  # default     = "eu-north-1"
+}
+
+variable "ami_id" {
+  type        = string
+  description = "AMI ID for the EC2 instance"
+  # default     = "ami-0a716d3f3b16d290c"
+}
+
+variable "instance_type" {
+  type        = string
+  description = "EC2 instance type"
+  default     = "t3.micro"
+}
+
+variable "key_pair_name" {
+  type        = string
+  description = "Name of the existing AWS EC2 key pair"
+  default     = "dream-key"
+}
+
+
+
+
+
