@@ -20,7 +20,7 @@ done
 docker pull ${docker_image}
 
 # Create a host directory for the app
-HOST_APP_DIR="/home/ubuntu/app"
+HOST_APP_DIR="${HOST_APP_DIR}"
 mkdir -p ${HOST_APP_DIR}
 chown -R ubuntu:ubuntu ${HOST_APP_DIR} || true
 
