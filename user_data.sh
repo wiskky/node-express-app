@@ -34,11 +34,5 @@ if [ -z "$(ls -A ${HOST_APP_DIR})" ]; then
   chown -R ubuntu:ubuntu $${HOST_APP_DIR} || true
 fi
 
-# Stop and remove any existing container with the same name
-# if [ "$(docker ps -aq -f name=${CONTAINER_NAME})" ]; then
-#   docker stop ${CONTAINER_NAME} || true
-#   docker rm ${CONTAINER_NAME} || true
-# fi
-
 # Run the container
 docker run -d -p 80:3000 -v ${HOST_APP_DIR}:/usr/src/app ${docker_image}
