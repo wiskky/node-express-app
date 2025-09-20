@@ -8,7 +8,7 @@ on:
 
 env:
   DOCKER_IMAGE_NAME: node-js-app
-  CONTAINER_NAME: node_app_containe
+  # CONTAINER_NAME: node_app_containe
 
 jobs:
   build:
