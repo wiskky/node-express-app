@@ -1,9 +1,9 @@
 name: Build and Deploy
 
 on:
-  #push:
-    #branches:
-      #- node-app
+  push:
+    branches:
+      - node-app
   workflow_dispatch:
 
 env:
@@ -54,8 +54,8 @@ jobs:
       - name: Terraform init
         run: terraform init
 
-      - name: Terraform plan
-        run: terraform plan 
+      # - name: Terraform plan
+      #   run: terraform plan 
         
       - name: Terraform apply
         run: terraform apply -auto-approve -input=false
